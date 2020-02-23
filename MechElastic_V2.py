@@ -187,7 +187,7 @@ for i in lines:
     if "ions per type = " in i:
         iontype=list(map(int,word[4:]))
     if "VRHFIN" in i:
-        symbols.append(i.split()[1][1:-1])
+        symbols.append(i.split()[1].replace('=', '').replace(':', ''))
     if "length of vectors" in i:
         n=lines.index(i)
         l=lines[n+1]
@@ -453,7 +453,7 @@ def elastic_const_bulk(cnew, snew):
             crystaltype=''
             spg=int(spglib.get_spacegroup(cell, symprec=1e-5).split()[1][1:-1])
             if (spg>=1 and spg<=2):
-                   crystaltype='triclinic'
+                  crystaltype='triclinic'
             if (spg>=3 and spg<=15):
                   crystaltype='monoclinic'
             if (spg>=16 and spg<=74):
